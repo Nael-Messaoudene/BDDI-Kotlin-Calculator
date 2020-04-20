@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Addition"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:paddingTop="20dp"
+        android:textSize="20dp"
+        app:layout_constraintWidth_percent="1"
+        app:layout_constraintHeight_percent="0.1"
+        android:textAlignment="center"
+        />
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/numberA"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        android:hint="Premier nombre"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/numberB"
+        app:layout_constraintLeft_toRightOf="@id/numberA"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/numberA"
+        android:hint="Second nombre"
+        android:layout_marginLeft="30dp"
+        />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_width="60dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/numberB"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="="
+        android:textSize="50dp"
+        android:textColor="@color/white"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/result"
+        android:textSize="40dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAlignment="gravity"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintLeft_toRightOf="@id/add"
+        app:layout_constraintTop_toTopOf="@+id/add"
+        android:text="0"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

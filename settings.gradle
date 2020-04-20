@@ -1,2 +1,4 @@
 rootProject.name='calculatorWithKotlin'
 include ':app'
+include ':testmodule'
+include ':fragmentapp'

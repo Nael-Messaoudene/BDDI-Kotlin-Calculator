@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import net.objecthunter.exp4j.ExpressionBuilder
 
@@ -20,6 +22,12 @@ class MainActivity : AppCompatActivity() {
         var str: String? = null
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+
+        //créer une instance du fragment
+        val fragment = MyFragment()
+
 
         val parent = findViewById<ConstraintLayout>(R.id.touches)
 
@@ -102,4 +110,16 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+}
+
+fun FragmentActivity.change(fragment: Fragment){
+
+    // créer un transaction sur le fragment manager
+    supportFragmentManager.beginTransaction().apply {
+        //replacer le précédent fragment, s'il existe
+        replace(R.id.touches, fragment)
+        //ajouter la transaction dans la stack
+        addToBackStack(null)
+    }.commit()
+//finalement, on valide la transaction
 }
