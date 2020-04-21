@@ -14,10 +14,10 @@ import model.Category
 
 @GlideModule
 
-class CategoryAdapter(private val dataset: List<Category>) :
+class CategoryAdapter(private val dataset: List<Category>, val itemClickListener: OnItemClickListener) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     class ViewHolder(val root: View) : RecyclerView.ViewHolder(root) {
-        fun bind(item: Category) {
+        fun bind(item: Category, clickListener: OnItemClickListener) {
             val txtTitle = root.findViewById<TextView>(R.id.article_title)
             val txtDesc = root.findViewById<TextView>(R.id.article_description)
             val Image = root.findViewById<ImageView>(R.id.article_image)
@@ -25,6 +25,11 @@ class CategoryAdapter(private val dataset: List<Category>) :
             txtDesc.text = item.description
 
             Glide.with(root).load(item.image).into(Image)
+
+            root.setOnClickListener {
+                clickListener.onItemClicked(item)
+            }
+
         }
     }
 
@@ -34,10 +39,12 @@ class CategoryAdapter(private val dataset: List<Category>) :
         return ViewHolder(rootView)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(dataset[position])
-
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(dataset[position], itemClickListener)
 
     override fun getItemCount(): Int = dataset.size
 
+}
+
+interface OnItemClickListener{
+    fun onItemClicked(Category: Category)
 }

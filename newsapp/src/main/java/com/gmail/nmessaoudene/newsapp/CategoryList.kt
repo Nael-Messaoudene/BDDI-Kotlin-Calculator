@@ -1,17 +1,20 @@
 package com.gmail.nmessaoudene.newsapp
 import adapters.CategoryAdapter
+import adapters.OnItemClickListener
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import model.Category
 
-class CategoryList: Fragment() {
+class CategoryList: Fragment(), OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var articleAdapter: ArrayAdapter<String>
     private lateinit var spinner: Spinner
@@ -29,12 +32,17 @@ class CategoryList: Fragment() {
 
         recyclerView = view.findViewById(R.id.recyclerView)
         bindRecyclerView()
+    }
 
+    override fun onItemClicked(category: Category){
+        Toast.makeText(context,"User name ${category.title}\n description: ${category.description}", Toast.LENGTH_LONG)
+            .show()
+        Log.i("Category", category.title)
     }
 
     private fun bindRecyclerView() {
         //créer une liste d'articles
-        var articles = listOf<Category>(
+        var categories = listOf<Category>(
             Category(
                 title = "Politique",
                 description = "C'est notre projet !",
@@ -67,7 +75,7 @@ class CategoryList: Fragment() {
             )
         )
         //créer une instance de l'adapteur
-        val adapterRecycler = CategoryAdapter(articles)
+        val adapterRecycler = CategoryAdapter(categories, this)
         //définir l'orientation des élements (vertical)
         recyclerView.layoutManager =
             LinearLayoutManager(context)
