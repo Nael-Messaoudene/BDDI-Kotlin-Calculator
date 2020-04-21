@@ -46,12 +46,14 @@ class LocationFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
+        val context = context ?: return
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
 
 
         var result = view.findViewById<AppCompatTextView>(R.id.userlocation)
 
-        if (context?.let {
+        if (context.let {
                 ContextCompat.checkSelfPermission(it, Manifest.permission.ACCESS_FINE_LOCATION) } != PackageManager.PERMISSION_GRANTED) {
 
             Log.d("Error", "Utilisateur pas accorder")

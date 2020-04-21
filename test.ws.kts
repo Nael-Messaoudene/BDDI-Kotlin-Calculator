@@ -20,8 +20,15 @@ fun Etudiant.fullName(){
 println(etudiant.fullName())
 
 
-fun Etudiant.switch() = copy(first = last , last = first)
+/*fun Etudiant.switch() = copy(first = last , last = first)
 
 println(etudiant.switch())
 
-fun List<Etudiant>.switch() = forEach{ it.switch() }
+fun List<Etudiant>.switch() = forEach{ it.switch()
+    */
+
+inline fun sum(a: Int, b:Int, callback: () -> Unit){
+    println(a.plus(b))
+}
+
+    sum(4,663,{})

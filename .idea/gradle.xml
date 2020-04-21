@@ -11,6 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/finalapptp" />
             <option value="$PROJECT_DIR$/fragmentapp" />
             <option value="$PROJECT_DIR$/locationfragment" />
             <option value="$PROJECT_DIR$/testmodule" />
