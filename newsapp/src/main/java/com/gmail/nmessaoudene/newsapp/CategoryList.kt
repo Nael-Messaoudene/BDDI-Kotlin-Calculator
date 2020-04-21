@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import model.Category
@@ -35,9 +36,20 @@ class CategoryList: Fragment(), OnItemClickListener {
     }
 
     override fun onItemClicked(category: Category){
-        Toast.makeText(context,"User name ${category.title}\n description: ${category.description}", Toast.LENGTH_LONG)
+        /*Toast.makeText(context,"User name ${category.title}\n description: ${category.description}", Toast.LENGTH_LONG)
             .show()
-        Log.i("Category", category.title)
+        Log.i("Category", category.title) */
+        activity?.change(ListArticleFragment())
+
+    }
+
+    fun FragmentActivity.change(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().apply {
+
+            replace(R.id.container, fragment)
+
+            addToBackStack(null)
+        }.commit()
     }
 
     private fun bindRecyclerView() {
@@ -82,6 +94,4 @@ class CategoryList: Fragment(), OnItemClickListener {
         //associer l'adapter à la recyclerview
         recyclerView.adapter = adapterRecycler
     }
-
-
 }
