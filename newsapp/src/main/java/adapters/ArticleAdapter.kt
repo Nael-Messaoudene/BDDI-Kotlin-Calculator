@@ -16,29 +16,29 @@ class ArticleAdapter(private val dataset: List<Article>) :
     RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
     class ViewHolder(val root: View) : RecyclerView.ViewHolder(root) {
         fun bind(item: Article) {
-            val txtTitle = root.findViewById<TextView>(R.id.art_title)
-            val txtDesc = root.findViewById<TextView>(R.id.art_desc)
-            val Image = root.findViewById<ImageView>(R.id.art_img)
-            txtTitle.text = item.title
-            txtDesc.text = item.description
+            val Title = root.findViewById<TextView>(R.id.article_title)
+            val Author = root.findViewById<TextView>(R.id.article_author)
+            val articleImage = root.findViewById<ImageView>(R.id.article_image)
+            Title.text = "${item.title}"
+            Author.text = item.author
 
             Log.d("itemUrl", item.url)
             Glide.with(root)  //2
-                .load(item.url)
+                .load(item.urlToImage)
+                .placeholder(R.drawable.ok)
                 .centerCrop()
-                .into(Image)
+                .into(articleImage)
+
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val rootView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.article_list, parent, false)
+            .inflate(R.layout.article, parent, false)
         return ViewHolder(rootView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(dataset[position])
     }
-
     override fun getItemCount(): Int = dataset.size
 }

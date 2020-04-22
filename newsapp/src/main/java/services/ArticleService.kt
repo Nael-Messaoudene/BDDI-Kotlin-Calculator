@@ -4,8 +4,9 @@ import model.Article
 import model.ArticleResult
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ArticleService {
-    @GET("/v2/top-headlines?country=us&category=business&apiKey=e42d4fccee0b46b8a027aa25a4502eb5")
-    fun list(): Call<ArticleResult>
+    @GET("/v2/everything")
+    fun list(@Query("q") q: String?): Call<ArticleResult>
 }

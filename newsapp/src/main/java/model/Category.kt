@@ -1,3 +1,6 @@
 package model
 
-data class Category(val title:String, val description:String, val image:String)
+data class Category(val name: String,
+                    val description: String,
+                    val url: String
+)
